@@ -1,0 +1,5 @@
+Flask
+flask_cors
+requests
+cachetools
+flask_script

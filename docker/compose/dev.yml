@@ -1,0 +1,29 @@
+version: '3'
+services:
+  server:
+    build: ../dockerfiles/flask/
+    image: caesi-server
+    container_name: caesi-server
+    ports:
+      - "3000:3000"
+    environment:
+      - ENV_CAESI=development
+      - DB_HOST=mysql
+      - DB_PASSWORD=caesi-password
+    volumes:
+      - ../../:/app
+    links:
+      - mysql:mysql-server
+    depends_on:
+      - mysql
+
+  mysql:
+    build: ../dockerfiles/mysql/
+    image: caesi-db
+    container_name: caesi-db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=caesi-password
+      - MYSQL_DATABASE=caesi
+    ports:
+      - "3306:3306"
