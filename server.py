@@ -4,7 +4,7 @@ from flask_script import Manager
 import requests
 
 app = Flask(__name__)
-CORS(app) 
+CORS(app)
 
 @app.route("/")
 def hello():
